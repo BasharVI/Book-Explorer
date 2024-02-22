@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Grid } from "@mui/material";
 
 interface SearchBarProps {
@@ -8,14 +8,20 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = (e: any) => {
-    if (e.target.value.length > 3) {
-      setSearchQuery(e.target.value);
-      setTimeout(() => {
-        onSearch(searchQuery);
-      }, 1000);
+  useEffect(() => {
+    if (searchQuery === "") {
+      return;
     }
-    // setSearchQuery(e.target.value);
+    const debounceTimeout = setTimeout(() => {
+      onSearch(searchQuery);
+      setSearchQuery("");
+    }, 2000);
+
+    return () => clearTimeout(debounceTimeout);
+  }, [searchQuery, onSearch]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
   };
 
   return (

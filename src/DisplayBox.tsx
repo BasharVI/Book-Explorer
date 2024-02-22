@@ -27,12 +27,14 @@ const DisplayBox: React.FC<DisplayBoxProps> = ({ books }) => {
 
   return (
     <>
-      <Grid alignItems="center">
-        <Typography component="div" style={{ marginBottom: "20px" }}>
-          Sort by Published Year
-          <Switch checked={sortByYear} onChange={toggleSortByYear} />
-        </Typography>
-      </Grid>
+      {sortedBooks.length > 1 ? (
+        <Grid alignItems="center">
+          <Typography component="div" style={{ marginBottom: "20px" }}>
+            Sort by Published Year
+            <Switch checked={sortByYear} onChange={toggleSortByYear} />
+          </Typography>
+        </Grid>
+      ) : null}
 
       <Grid container spacing={2} justifyContent="center">
         {sortedBooks.map((book, index) => (

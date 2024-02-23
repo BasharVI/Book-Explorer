@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://basharvi.github.io/Book-Explorer",
+  "homepage": "https://basharvi.github.io/Book-Explorer/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
